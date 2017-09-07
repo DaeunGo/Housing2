@@ -65,7 +65,7 @@ sns.boxplot(x='Regionname',y='Price',data=dataframe)
 #Scatter plots
 # Suplots of numeric features v price
 sns.set_style('darkgrid')
-f, axes = plt.subplots(4,2, figsize = (20,30))
+f, axes = plt.subplots(3,2, figsize = (20,30))
 
 # Plot [0,0]
 axes[0,0].scatter(x = 'Rooms', y = 'Price', data = dataframe, edgecolor = 'b')
@@ -110,8 +110,7 @@ df2.describe()
 
 ## Linear Regression
 # Create features variable 
-X =dataframe[['Rooms', 'Distance', 'Bathroom', 'Car', 'Landsize', 
-            'BuildingArea', 'Propertycount',]]
+X = dataframe[['Rooms', 'Price', 'Distance', 'Car','YearBuilt', 'Propertycount']]
 
 # Create target variable
 y = dataframe['Price']
@@ -133,6 +132,8 @@ plt.scatter(X_test, y_pred, color="lightgreen")
 
 plt.plot(X_train, regressor.predict(X_train), color="blue")
 plt.show()
-
+from sklearn import metrics
+print('MAE:',metrics.mean_absolute_error(y_test,y_pred))
+print('MSE:',metrics.mean_squared_error(y_test,y_pred))
 
 
